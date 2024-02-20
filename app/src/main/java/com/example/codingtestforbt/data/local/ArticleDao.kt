@@ -8,14 +8,14 @@ import androidx.room.Query
 import com.example.codingtestforbt.domain.model.Article
 
 @Dao
-interface NewsDao {
+interface ArticleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertArticles(articles: List<Article>)
 
-    @Query("SELECT * FROM Article")
+    @Query("SELECT * FROM article_table")
     fun getAllArticles(): PagingSource<Int, Article>
 
-    @Query("DELETE FROM Article")
+    @Query("DELETE FROM article_table")
     suspend fun deleteAllArticles()
 }

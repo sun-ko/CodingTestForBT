@@ -1,10 +1,6 @@
 package com.example.codingtestforbt.di
 
-import com.example.codingtestforbt.data.local.ArticleRemoteKeysDao
-import com.example.codingtestforbt.data.local.NewsDao
-import com.example.codingtestforbt.data.local.NewsDatabase
 import com.example.codingtestforbt.data.remote.NewsApi
-import com.example.codingtestforbt.domain.model.ArticleRemoteKeys
 import com.example.codingtestforbt.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -28,7 +24,4 @@ object AppModule {
             .build()
             .create(NewsApi::class.java)
     }
-
-
-
 }

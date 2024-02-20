@@ -6,6 +6,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -81,11 +82,11 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //Room
-    val roomVersion = "2.5.2"
+    val roomVersion = "2.4.0"
     implementation("androidx.room:room-runtime:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
-    implementation("androidx.room:room-paging:2.5.2")
+    implementation("androidx.room:room-paging:$roomVersion")
 
     //Hilt
     implementation("com.google.dagger:hilt-android:2.45")
@@ -107,6 +108,13 @@ dependencies {
 
     //Swipe Refresh
     implementation("com.google.accompanist:accompanist-swiperefresh:0.27.0")
+
+
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
+    // KotlinX Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 
 
 }

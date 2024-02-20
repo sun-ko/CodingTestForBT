@@ -1,7 +1,7 @@
 package com.example.codingtestforbt.di
 
 import com.example.codingtestforbt.domain.repository.NewsRepository
-import com.example.codingtestforbt.repository.NewsRepositoryImpl
+import com.example.codingtestforbt.data.repository.NewsRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

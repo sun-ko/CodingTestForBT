@@ -2,10 +2,10 @@ package com.example.codingtestforbt.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.codingtestforbt.data.local.ArticleDao
 import com.example.codingtestforbt.data.local.ArticleRemoteKeysDao
-import com.example.codingtestforbt.data.local.NewsDao
 import com.example.codingtestforbt.data.local.NewsDatabase
-import com.example.codingtestforbt.data.local.NewsTypeConvertor
+import com.example.codingtestforbt.util.Constants.ARTICLE_DATABASE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,18 +23,10 @@ object DatabaseModule {
         @ApplicationContext context: Context
     ): NewsDatabase {
         return Room.databaseBuilder(
-            context = context,
-            klass = NewsDatabase::class.java,
-            name = "news_db"
-        ).addTypeConverter(NewsTypeConvertor())
-            .fallbackToDestructiveMigration()
-            .build()
+            context,
+            NewsDatabase::class.java,
+            ARTICLE_DATABASE
+        ).fallbackToDestructiveMigration().build()
     }
-
-    @Provides
-    @Singleton
-    fun provideNewsDao(
-        newsDatabase: NewsDatabase
-    ): NewsDao = newsDatabase.newsDao
 
 }

@@ -61,21 +61,18 @@ fun ArticleCard(
                 .padding(horizontal = ExtraSmallPadding)
                 .height(ArticleCardSize)
         ) {
-            Text(
-                text = article.title,
-                style = MaterialTheme.typography.bodyMedium.copy(),
-                color = colorResource(id = R.color.text_title),
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
+            article.title?.let {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.bodyMedium.copy(),
+                    color = colorResource(id = R.color.text_title),
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = article.source.name,
-                    style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
-                    color = colorResource(id = R.color.body)
-                )
                 Spacer(modifier = Modifier.width(ExtraSmallPadding2))
                 Icon(
                     painter = painterResource(id = R.drawable.ic_time),
@@ -84,11 +81,13 @@ fun ArticleCard(
                     tint = colorResource(id = R.color.body)
                 )
                 Spacer(modifier = Modifier.width(ExtraSmallPadding))
-                Text(
-                    text = article.publishedAt,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = colorResource(id = R.color.body)
-                )
+                article.publishedAt?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = colorResource(id = R.color.body)
+                    )
+                }
             }
         }
     }
@@ -105,9 +104,9 @@ fun ArticleCardPreview() {
                 content = "",
                 description = "",
                 publishedAt = "2 hours",
-                source = Source(id = "", name = "BBC"),
                 title = "Her train broke down. Her phone died. And then she met her Saver in a",
                 url = "",
+                source = Source(id="",name="bbc"),
                 urlToImage = "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/11787/production/_124395517_bbcbreakingnewsgraphic.jpg"
             )
         )

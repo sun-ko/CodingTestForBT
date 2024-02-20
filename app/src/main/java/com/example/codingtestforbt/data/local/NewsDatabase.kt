@@ -2,13 +2,12 @@ package com.example.codingtestforbt.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import com.example.codingtestforbt.domain.model.Article
+import com.example.codingtestforbt.domain.model.ArticleRemoteKeys
 
-@Database(entities = [Article::class],version = 1,)
-@TypeConverters(NewsTypeConvertor::class)
+@Database(entities = [Article::class, ArticleRemoteKeys::class], version = 1)
 abstract class NewsDatabase : RoomDatabase() {
 
-    abstract val newsDao: NewsDao
-
+    abstract fun articleDao(): ArticleDao
+    abstract fun articleRemoteKeysDao(): ArticleRemoteKeysDao
 }

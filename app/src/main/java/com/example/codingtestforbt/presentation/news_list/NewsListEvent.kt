@@ -7,4 +7,5 @@ sealed class NewsListEvent {
 
     object RefreshDefaultNews: NewsListEvent()
     object GetNews: NewsListEvent()
+
 }

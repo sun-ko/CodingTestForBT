@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.codingtestforbt.domain.model.Article
 import com.example.codingtestforbt.presentation.Dimens.MediumPadding1
 import com.example.codingtestforbt.presentation.common.ArticlesList
@@ -25,12 +26,10 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun NewsListScreen(
-    articles: LazyPagingItems<Article>,
     state: NewsListState,
     event: (NewsListEvent) -> Unit,
     navigateToDetails: (Article) -> Unit
 ) {
-
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = state.isLoading)
 
     Column(
@@ -87,11 +86,14 @@ fun NewsListScreen(
                 event(NewsListEvent.RefreshDefaultNews)
             }
         ) {
-            ArticlesList(
-                modifier = Modifier.padding(horizontal = MediumPadding1),
-                articles = articles,
-                onClick = navigateToDetails
-            )
+            state.articles?.let {
+                val articles = it.collectAsLazyPagingItems()
+                ArticlesList(
+                    modifier = Modifier.padding(horizontal = MediumPadding1),
+                    articles = articles,
+                    onClick = navigateToDetails
+                )
+            }
         }
     }
 }

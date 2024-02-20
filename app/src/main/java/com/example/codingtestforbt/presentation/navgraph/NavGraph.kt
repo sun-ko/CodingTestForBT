@@ -24,10 +24,9 @@ fun NavGraph(startDestination: String) {
     ) {
         composable(route = Route.NewsListScreen.route) {
             val viewModel: NewsListViewModel = hiltViewModel()
-            val articles = viewModel.newsState.collectAsLazyPagingItems()
+            val state = viewModel.newsState.value
 
             NewsListScreen(
-                articles = articles,
                 navigateToDetails = { article ->
                     navigateToDetails(
                         navController = navController,
@@ -35,7 +34,7 @@ fun NavGraph(startDestination: String) {
                     )
                 },
                 event = viewModel::onEvent,
-                state = viewModel.state.value
+                state = state
             )
         }
         composable(route = Route.DetailsScreen.route) {

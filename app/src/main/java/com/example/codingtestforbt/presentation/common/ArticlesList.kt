@@ -42,7 +42,7 @@ fun ArticlesList(
         items(
             count = articles.size,
         ) {
-            articles[it]?.let { article ->
+            articles[it].let { article ->
                 ArticleCard(article = article, onClick = { onClick(article) })
             }
         }
@@ -57,7 +57,7 @@ fun ArticlesList(
     articles: LazyPagingItems<Article>,
     onClick: (Article) -> Unit
 ) {
-
+    Log.d("news articles from db", articles.itemCount.toString())
     val snackbarHostState = remember { SnackbarHostState() }
 
     Scaffold(
